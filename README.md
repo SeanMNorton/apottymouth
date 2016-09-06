@@ -1,4 +1,5 @@
 # apottymouth
 Chrome extension that adds colorful language to the browser
 
-[Link to extension](https://chrome.google.com/webstore/detail/potty-mouth/mhjpdocdlebpdbeomhbjnnoimfnemkjm)
+
+<a href="https://chrome.google.com/webstore/detail/potty-mouth/mhjpdocdlebpdbeomhbjnnoimfnemkjm" target="_blank">Link to extension</a>
