@@ -11,8 +11,14 @@
 //
 setTimeout(function () {
   changeTitle()
-  // checkboxStatus()
-	traverseDown(document.body);
+  var filter;
+  chrome.storage.sync.get(['clean'], function(resp){
+    filter = resp.clean || 'false'
+  })
+  console.log('filter is ' + filter + " in the content file")
+  if (filter === 'false' || filter === undefined) {
+    traverseDown(document.body);
+  }
 }, 500);
 
 function changeTitle() {
@@ -59,36 +65,4 @@ function megaRegex(text) {
   text = text.replace(/\bpoop/g, "shit");
   text = text.replace(/\bPoop/g, "Shit");
   return text
-}
-
-
-function checkboxStatus() {
-  console.log($('#pottymouthfilterbutton').val())
-}
-
-
-
-
-
-
-function context() {
-  chrome.contextMenus.create({
-    id: "radio-green",
-    type: "radio",
-    title: "Make it green",
-    contexts: ["all"],
-    checked: false
-  }, onCreated);
-
-
-
-  chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    if (info.menuItemId == "radio-green") {
-      alert('hey yall')
-    }
-  });
-}
-
-function onCreated() {
-  console.log('hey')
 }
