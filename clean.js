@@ -31,7 +31,11 @@ function replacementTime(textNode) {
 }
 
 function megaRegex(text) {
+	text = text.replace(/Fuck/g, "F***");
   text = text.replace(/fuck/g, "f***");
+	text = text.replace(/Shit/g, "Sh*t");
   text = text.replace(/shit/g, "sh*t");
+	text = text.replace(/Ass/g, "A**");
+	text = text.replace(/ass/g, "a**");
   return text
 }
