@@ -1,12 +1,16 @@
 console.log('found me');
-
+//
 function click(e) {
-  chrome.tabs.executeScript(null);
+  console.log(e);
+  chrome.tabs.executeScript(null, {file: "clean.js"});
   window.close();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  $('form').on('click', function(e){
-    console.log(e.target)
-  })
+  console.log('hey');
+  // .on('click', click);
+  var input = document.querySelectorAll('div');
+  for (var i = 0; i < input.length; i++) {
+    input[i].addEventListener('click', click);
+  }
 });
