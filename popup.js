@@ -1,14 +1,24 @@
 function click(e) {
+  var filter;
   chrome.storage.sync.get(['clean'], function(resp) {
     console.log(resp);
     if (resp.clean !== 'true') {
-      chrome.tabs.executeScript(null, {file: "clean.js"});
       chrome.storage.sync.set({'clean': 'true'}, function(){
         console.log('Filter setting was set to true.')
+        filter = 'true'
+        chrome.tabs.executeScript(null, {
+          code: 'var filter = '+filter+';'}, function() {
+            chrome.tabs.executeScript(null, {file: 'filter.js'});
+        });
       })
     } else {
       chrome.storage.sync.set({'clean': 'false'}, function(){
         console.log('Filter setting was set to false.')
+        filter = 'false'
+        chrome.tabs.executeScript(null, {
+          code: 'var filter = '+filter+';'}, function() {
+            chrome.tabs.executeScript(null, {file: 'filter.js'});
+        });
       })
     }
   })

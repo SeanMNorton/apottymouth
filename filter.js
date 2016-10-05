@@ -1,6 +1,8 @@
 // ANYTHING IN THIS FILE AFFECTS MAIN WEBPAGE
+// var filter will be true or false
+console.log(filter)
+console.log(filter === true)
 traverseDown(document.body);
-
 function traverseDown(node) {
 	var child, nextSib;
 
@@ -31,7 +33,16 @@ function replacementTime(textNode) {
 }
 
 function megaRegex(text) {
-  text = text.replace(/fuck/g, "f***");
-  text = text.replace(/shit/g, "sh*t");
+	if (filter === true) {
+  	text = text.replace(/fuck/g, "f***");
+  	text = text.replace(/shit/g, "sh*t");
+	} else {
+		text = text.replace(/f\*\*\*/g, "fuck");
+		text = text.replace(/F\*\*\*/g, "Fuck");
+  	text = text.replace(/sh\*t/g, "shit");
+		text = text.replace(/Sh\*t/g, "Shit");
+		text = text.replace(/a\*\*/g, "ass");
+		text = text.replace(/A\*\*/g, "Ass");
+	}
   return text
 }
