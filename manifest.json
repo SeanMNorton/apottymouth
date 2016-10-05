@@ -4,8 +4,8 @@
   "version": "0.2",
   "description": "Adds colorful language to the web.",
   "permissions": [
-    "http://*/",
-    "https://*/",
+    "http://*/*",
+    "https://*/*",
     "tabs",
     "storage"
   ],

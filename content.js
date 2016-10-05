@@ -10,16 +10,15 @@
 //
 //
 setTimeout(function () {
-  changeTitle()
   var filter;
-  chrome.storage.sync.get(['clean'], function(resp){
-    filter = resp.clean || 'false'
+  changeTitle();
+  chrome.storage.sync.get(['clean'], function(resp) {
+    console.log(resp);
+    if (resp.clean !== 'true') {
+      traverseDown(document.body);
+    }
   })
-  console.log('filter is ' + filter + " in the content file")
-  if (filter === 'false' || filter === undefined) {
-    traverseDown(document.body);
-  }
-}, 500);
+}, 300);
 
 function changeTitle() {
   var oldTitle = $(document).attr('title')
