@@ -12,10 +12,12 @@
 var filter;
 setTimeout(function () {
   // changeTitle();
-  chrome.storage.sync.get(['clean'], function(resp) {
+  chrome.storage.sync.get(['clean','prude'], function(resp) {
     console.log(resp);
-    filter = resp.clean;
-    traverseDown(document.body);
+    if (resp.prude !== 'true'){
+      filter = resp.clean;
+      traverseDown(document.body);
+    }
   })
 }, 300);
 

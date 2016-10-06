@@ -1,7 +1,5 @@
 // ANYTHING IN THIS FILE AFFECTS MAIN WEBPAGE
 // var filter will be true or false
-console.log(filter)
-console.log(filter === true)
 traverseDown(document.body);
 function traverseDown(node) {
 	var child, nextSib;
