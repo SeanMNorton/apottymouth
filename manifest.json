@@ -3,6 +3,15 @@
   "name": "A Potty Mouth",
   "version": "0.2",
   "description": "Adds colorful language to the web.",
+  "permissions": [
+    "http://*/*",
+    "https://*/*",
+    "tabs",
+    "storage"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "matches": [
