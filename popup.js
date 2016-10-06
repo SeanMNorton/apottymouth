@@ -31,6 +31,7 @@ function prudeClick(e) {
       })
     } else {
       chrome.storage.sync.set({'prude': 'false'}, function(){
+        chrome.tabs.executeScript(null, {code:'location.reload()'})
       })
     }
   })
