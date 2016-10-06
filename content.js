@@ -9,16 +9,20 @@
 // })
 //
 //
+var filter;
 setTimeout(function () {
-  changeTitle()
-  // checkboxStatus()
-	traverseDown(document.body);
-}, 500);
+  // changeTitle();
+  chrome.storage.sync.get(['clean'], function(resp) {
+    console.log(resp);
+    filter = resp.clean;
+    traverseDown(document.body);
+  })
+}, 300);
 
-function changeTitle() {
-  var oldTitle = $(document).attr('title')
-  $(document).attr("title", megaRegex(oldTitle));
-}
+// function changeTitle() {
+//   var oldTitle = $(document).attr('title')
+//   $(document).attr("title", megaRegex(oldTitle));
+// }
 
 function traverseDown(node) {
 	var child, nextSib;
@@ -46,7 +50,11 @@ function traverseDown(node) {
 
 function replacementTime(textNode) {
 	var text = textNode.nodeValue;
-	textNode.nodeValue = megaRegex(text);
+  if (filter !== 'true') {
+    textNode.nodeValue = megaRegex(text);
+  } else {
+    textNode.nodeValue = megaCleanRegex(text);
+  }
 }
 
 function megaRegex(text) {
@@ -61,34 +69,14 @@ function megaRegex(text) {
   return text
 }
 
-
-function checkboxStatus() {
-  console.log($('#pottymouthfilterbutton').val())
-}
-
-
-
-
-
-
-function context() {
-  chrome.contextMenus.create({
-    id: "radio-green",
-    type: "radio",
-    title: "Make it green",
-    contexts: ["all"],
-    checked: false
-  }, onCreated);
-
-
-
-  chrome.contextMenus.onClicked.addListener(function(info, tab) {
-    if (info.menuItemId == "radio-green") {
-      alert('hey yall')
-    }
-  });
-}
-
-function onCreated() {
-  console.log('hey')
+function megaCleanRegex(text) {
+  text = text.replace(/\ba /g, "a f***ing ");
+  text = text.replace(/\bA /g, "A f***ing ");
+  text = text.replace(/\bhuge /g, " huge-a** ");
+  text = text.replace(/\bHuge /g, "Huge-a** ");
+  text = text.replace(/\bbig /g, " big-a** ");
+  text = text.replace(/\bBig /g, "Big-a** ");
+  text = text.replace(/\bpoop/g, "sh*t");
+  text = text.replace(/\bPoop/g, "Sh*t");
+  return text
 }
