@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "A Potty Mouth",
-  "version": "0.2",
+  "version": "1.0",
   "description": "Adds colorful language to the web.",
   "permissions": [
     "http://*/*",
